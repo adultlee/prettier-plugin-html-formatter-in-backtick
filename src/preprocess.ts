@@ -1,5 +1,9 @@
+import isWorkingPlugin from "./util/isWorkingPlugin";
+
 export const preprocess = (code: string) => {
-	console.log(code);
+	if (!isWorkingPlugin(code)) {
+		return code;
+	}
 
 	return code;
 };
