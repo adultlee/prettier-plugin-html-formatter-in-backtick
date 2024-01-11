@@ -28,9 +28,9 @@ function add(a: number, b: number) {
 // output
 function add(a: number, b: number) {
 	const element = /*html */ `<div>
-                                <div>hihi</div>
-                                <div>hihi</div>
-                               </div>`;
+                                     <div>hihi</div>
+                                     <div>hihi</div>
+                                   </div>`;
 	return a + b;
 }
 ```
@@ -58,6 +58,8 @@ module.exports = {
   "plugins": ["@adultlee/prettier-plugin-html-formatter-in-backtick"]
 }
 ```
+
+or, using .prettierrc.json 
 
 ```json
 {
