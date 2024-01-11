@@ -20,7 +20,7 @@ const config: ModifiedOptions = {
 	parser: "typescript",
 	plugins: ["./src/index.ts"],
 	printWidth: 80,
-	tabWidth: 4,
+	tabWidth: 2,
 	trailingComma: "all",
 	singleQuote: true,
 	jsxBracketSameLine: true,
