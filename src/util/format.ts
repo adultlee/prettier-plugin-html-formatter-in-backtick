@@ -27,10 +27,10 @@ const preprocess = (code: string): string => {
 
 const process = (code: string, step: number, distance): string => {
 	let indents = "";
-	let distanceIndents = "     ";
+	let distanceIndents = "    ";
 
-	for (let i = 0; i < distance; i++) {
-		distanceIndents += " ";
+	for (let i = 0; i < distance / 2; i++) {
+		distanceIndents += "  ";
 	}
 
 	convert.line.forEach((source, index) => {
