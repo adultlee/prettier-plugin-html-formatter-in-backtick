@@ -1,12 +1,25 @@
 {
 	"name": "prettier-plugin-html-formatter-in-backtick",
-	"version": "0.0.1",
-	"description": "",
+	"version": "0.1.0",
+	"description": "This is a Prettier plugin for formmating HTML inside backticks.",
 	"main": "dist/index.js",
 	"scripts": {
 		"build": "tsc",
 		"test": "jest",
 		"dev": "tsc --watch"
+	},
+	"keywords": [
+		"prettier",
+		"plugin",
+		"sort",
+		"import",
+		"typescript",
+		"javascript"
+	],
+	"author": {
+		"name": "adultlee",
+		"email": "devlsi1228@gmai.com",
+		"url": "https://github.com/adultlee"
 	},
 	"license": "ISC",
 	"devDependencies": {
