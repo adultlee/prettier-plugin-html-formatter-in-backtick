@@ -1,6 +1,6 @@
 {
 	"name": "prettier-plugin-html-formatter-in-backtick",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"description": "This is a Prettier plugin for formatting HTML inside backticks.",
 	"main": "dist/index.js",
 	"scripts": {
