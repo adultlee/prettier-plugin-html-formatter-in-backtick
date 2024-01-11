@@ -26,9 +26,9 @@ function add(a:number,b:number)    {
 
 const formattedCode = `function add(a: number, b: number) {
   const element = /*html */ \`<div>
-                                  <div>hihi</div>
-                                  <div>hihi</div>
-                                </div>\`;
+                                <div>hihi</div>
+                                <div>hihi</div>
+                              </div>\`;
   return a + b;
 }
 `;

@@ -13,7 +13,7 @@ export function print(html: string) {
 		const distance = match.index - lastNewLine + 5;
 		const formatted = format(match[1], distance);
 		// 원래 문자열에서 백틱으로 감싸진 부분을 포맷된 내용으로 대체
-		result = result.replace(match[0], `/*html */ \`${formatted}\``);
+		result = result.replace(match[0], `/*html */\`${formatted}\``);
 	}
 
 	return result;
