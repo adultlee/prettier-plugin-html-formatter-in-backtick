@@ -3,28 +3,37 @@ import config from "./test-config";
 
 const code = `
 function add(a:number,b:number)    {
-  const element =  /*html */    \`<div>ihi
- 
-
-
-
-
-
-                             
+  const element =  /*html */    \`<div><div>hihi
+  </div><div>hihi
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </div>
   </div>\`
   return a + b;
 }
 `;
 
 const formattedCode = `function add(a: number, b: number) {
-  const element = /*html */ \`<div>ihi</div>\`;
+  const element = /*html */ \`<div>
+                                <div>hihi</div>
+                                <div>hihi</div>
+                              </div>\`;
   return a + b;
 }
 `;
 
-test("one line html code test", () => {
+test("multiple line test", () => {
 	const output = prettier.format(code, config);
-	console.log(output);
-	console.log(formattedCode);
 	expect(output).toEqual(formattedCode);
 });

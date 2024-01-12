@@ -1,6 +1,6 @@
 import { format } from "./format";
 
-export function print(html: string) {
+export function formatAll(html: string) {
 	// 정규표현식을 사용해 /*html */ 뒤에 오는 백틱으로 감싸진 모든 문자열을 찾음
 	const regex = /\/\*html \*\/\s+`([^`]*)`/g;
 	let match;
