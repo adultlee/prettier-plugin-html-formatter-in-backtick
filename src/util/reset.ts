@@ -1,4 +1,8 @@
+import { entify } from "./entify";
+
 export const reset = (code: string) => {
+	code = entify(code);
+
 	return code
 		.replace(/\n|\t/g, "") // 줄바꿈과 탭 제거
 		.replace(/>\s+</g, "><") // 태그 사이의 공백 제거
