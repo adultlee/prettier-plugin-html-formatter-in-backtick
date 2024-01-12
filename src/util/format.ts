@@ -1,25 +1,22 @@
 import { reset } from "./reset";
 import { selfClosing } from "./setfClosing";
 
-const convert = {
-	line: [],
-};
+let line = []; // 한 파일에서 여러번 prettier-plugin 이 동작하는 경우를 상정합니다
 
 const enqueue = (code: string): string => {
-	convert.line = [];
+	line = []; // 새로운 parsing이 시도될때, 이전에 등록된 line 들을 모두 제거 합니다.
 	let i = -1;
 
 	code = code.replace(/<[^>]*>/g, (match) => {
-		convert.line.push(match);
+		line.push(match);
 		i++;
 
 		return `\n[#-# : ${i} : ${match} : #-#]\n`;
 	});
-
 	return code;
 };
 
-const preprocess = (code: string): string => {
+const init = (code: string): string => {
 	const resetCode = reset(code);
 	const selfClosingCode = selfClosing(resetCode);
 	const preProcessingCode = enqueue(selfClosingCode);
@@ -36,14 +33,12 @@ const process = (code: string, step: number, distance): string => {
 		distanceIndents += "  ";
 	}
 
-	convert.line.forEach((source, index) => {
+	line.forEach((source, index) => {
 		code = code
 			.replace(/\n+/g, "\n")
 			.replace(`[#-# : ${index} : ${source} : #-#]`, (match) => {
 				let subtrahend = 0;
-				const prevLine = `[#-# : ${index - 1} : ${
-					convert.line[index - 1]
-				} : #-#]`;
+				const prevLine = `[#-# : ${index - 1} : ${line[index - 1]} : #-#]`;
 
 				indents += "0";
 
@@ -61,7 +56,7 @@ const process = (code: string, step: number, distance): string => {
 
 				const result = match
 					.replace(`[#-# : ${index} : `, "")
-					.replace(" : #-#]", "");
+					.replace(" : #-#]", ""); // 다시 원래상태로 정렬
 
 				return (
 					(index !== 0 ? distanceIndents : "") +
@@ -80,7 +75,7 @@ const process = (code: string, step: number, distance): string => {
 
 export const format = (code: string, distance: number) => {
 	const tabSize = 2;
-	code = preprocess(code);
+	code = init(code);
 	code = process(code, tabSize, distance);
 
 	return code;

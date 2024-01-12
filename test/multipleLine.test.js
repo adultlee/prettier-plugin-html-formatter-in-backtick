@@ -35,5 +35,6 @@ const formattedCode = `function add(a: number, b: number) {
 
 test("multiple line test", () => {
 	const output = prettier.format(code, config);
+
 	expect(output).toEqual(formattedCode);
 });

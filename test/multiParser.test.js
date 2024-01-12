@@ -44,5 +44,6 @@ const formattedCode = `function add(a: number, b: number) {
 
 test("one line html code test", () => {
 	const output = prettier.format(code, config);
+
 	expect(output).toEqual(formattedCode);
 });
