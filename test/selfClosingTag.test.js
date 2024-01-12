@@ -10,10 +10,10 @@ function add(a:number,b:number)    {
 
 const formattedCode = `function add(a: number, b: number) {
   const element = /*html */ \`<div>
-                                <button />
-                                <button />
-                                <button />
-                                <button />
+                                <button></button>
+                                <button></button>
+                                <button></button>
+                                <button></button>
                               </div>\`;
   return a + b;
 }
@@ -21,6 +21,6 @@ const formattedCode = `function add(a: number, b: number) {
 
 test("one line html code test", () => {
 	const output = prettier.format(code, config);
-
+	console.log(output);
 	expect(output).toEqual(formattedCode);
 });

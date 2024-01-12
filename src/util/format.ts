@@ -1,4 +1,5 @@
 import { reset } from "./reset";
+import { selfClosing } from "./setfClosing";
 
 const convert = {
 	line: [],
@@ -19,16 +20,18 @@ const enqueue = (code: string): string => {
 };
 
 const preprocess = (code: string): string => {
-	code = reset(code);
-	code = enqueue(code);
+	const resetCode = reset(code);
+	const selfClosingCode = selfClosing(resetCode);
+	const preProcessingCode = enqueue(selfClosingCode);
 
-	return code;
+	return preProcessingCode;
 };
 
 const process = (code: string, step: number, distance): string => {
 	let indents = "";
 	let distanceIndents = "    ";
 
+	// 초기 distance 설정
 	for (let i = 0; i < distance / 2; i++) {
 		distanceIndents += "  ";
 	}
