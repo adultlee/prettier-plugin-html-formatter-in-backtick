@@ -4,6 +4,7 @@ jest.config.js
 yarn.lock
 .github/
 src/
-tests/
-examples/
+test/
+example/
+docs/
 tsconfig.json
