@@ -9,17 +9,12 @@ function add(a:number,b:number)    {
 `;
 
 const formattedCode = `function add(a: number, b: number) {
-  const element = /*html */ \`<div>
-                                <button></button>
-                                <button></button>
-                                <button></button>
-                                <button></button>
-                              </div>\`;
+  const element = /*html */ \`<div><button /><button /><button /><button /></div>\`;
   return a + b;
 }
 `;
 
-test("one line html code test", () => {
+test("self closing tag test", () => {
 	const output = prettier.format(code, config);
 
 	expect(output).toEqual(formattedCode);
