@@ -52,8 +52,11 @@ maskInterpolations(html: string): { masked: string; tokens: string[] }
 restoreInterpolations(formatted: string, tokens: string[]): string
 ```
 
-- `mask`: `/\$\{[^}]*\}/g` 로 `${...}`를 순서대로 찾아 `phpib<i>placeholder`
-  토큰으로 치환하고, 원본 조각(`${...}` 전체)을 `tokens[i]`에 저장.
+- `mask`: `/\$\{[^}]*\}/g` 로 `${...}`를 찾아 `phpib<i>placeholder` 토큰으로
+  치환하고, 원본 조각(`${...}` 전체)을 `tokens[i]`에 저장. **동일한 보간
+  텍스트는 동일한 토큰을 재사용한다**(fragment→token 맵). 이는 태그명 위치의
+  `<${Tag}>...</${Tag}>` 에서 여닫기 태그명이 서로 다른 토큰이 되어 파싱
+  에러가 나는 것을 막기 위함이다(probe로 확인된 필수 조건).
 - `restore`: `tokens`를 순회하며 각 토큰 문자열을 원본 조각으로 역치환.
 
 ### 수정: `src/util/format.ts`
