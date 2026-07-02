@@ -6,13 +6,12 @@ import config from "./test-config";
 // 아직 대응하지 않았으므로 test.skip으로 문서화만 해 둔다.
 // (후속 작업에서 해결 시 skip을 해제한다.)
 
-// TODO: ${...} 템플릿 보간 보호
-// 속성값 위치의 보간이 따옴표로 감싸져 의미가 바뀔 수 있다:
-//   class=${c}  →  class="${c}"
-test.skip("[한계] 속성값 위치의 ${} 보간에 따옴표가 씌워지지 않아야 한다", () => {
+// ${...} 보간 보호(interpolation.ts)로 텍스트·속성·태그명 위치는 보존된다.
+// 단, 무따옴표 속성값은 Prettier가 따옴표를 씌우므로 class="${c}" 로 정규화된다.
+test("무따옴표 속성값 보간은 따옴표가 씌워진다(수용된 동작)", () => {
 	const code = "const c = 'x'; const el = /*html */ `<div class=${c}>hi</div>`;\n";
 	expect(prettier.format(code, config)).toEqual(
-		'const c = "x";\nconst el = /*html */ `<div class=${c}>hi</div>`;\n'
+		"const c = 'x';\nconst el = /*html */ `<div class=\"${c}\">hi</div>`;\n"
 	);
 });
 
