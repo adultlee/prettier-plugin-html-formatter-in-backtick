@@ -186,14 +186,18 @@ The plugin delegates to Prettier's HTML formatter, so you also get:
 
 Known cases the plugin does **not** yet handle well (contributions welcome):
 
-- **Template interpolation in attribute position.** `<div class=${c}>` may be
-  rewritten to `<div class="${c}">`, changing meaning. Interpolation in text
-  position (`<div>${name}</div>`) is preserved.
+- **Unquoted attribute interpolation gets quoted.** `<div class=${c}>` is
+  normalized to `<div class="${c}">`. All other interpolation positions
+  (text, quoted attributes, between attributes, tag names) are preserved
+  as written.
+- **Nested backticks in interpolation.** `` ${cond ? `a` : `b`} `` is not
+  supported — the block is not even extracted (the matcher stops at the
+  inner backtick).
 - **Whitespace-sensitive tags.** Content inside `<pre>` is re-formatted, so
   leading whitespace/newlines may change.
 - **Prettier 3.** Not yet supported; use Prettier 2.x.
 
-These are tracked as skipped tests in
+Remaining limitations are tracked in
 [`test/knownLimitations.test.js`](test/knownLimitations.test.js).
 
 ---
